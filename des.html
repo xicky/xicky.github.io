@@ -3,12 +3,23 @@
 <head>
 <title>DES</title>
 <script type="text/javascript" src="des.js"></script>
+<script type="text/javascript" src="des-ui.js"></script>
+<link type="text/css" rel="stylesheet" href="des.css"/>
 </head>
 <body>
-<h1>des.html</h1>
-<p>Text:<input id="text"/></p>
-<p>Cipher:<span id="cipher"></span></p>
-<button onclick="DES.encrypt()">Button</button>
+<h1><input id="rounds" value="6"/> Rounds DES</h1>
+
+<div id="plain-block" class="box">
+    <h4>Plaintext:</h4>
+    <textarea id="plain" class="bin" maxlength="64" rows="1"></textarea><span id="plain-bin-tip" class="tip"></span>
+    <textarea id="plain-hex" class="hex"></textarea>
+</div>
+<div id="cipher-block" class="box">
+    <h4>Ciphertext:</h4>
+    <textarea id="cipher" class="bin" maxlength="64" rows="1"></textarea>
+    <textarea id="cipher-hex" class="hex"></textarea>
+</div>
+
 </body>
 </html>
 

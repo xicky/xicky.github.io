@@ -1,0 +1,23 @@
+body {
+    background: #F8F8F8;
+}
+
+.box {
+    float: left;
+    width: 45%;
+    margin: 20px;
+}
+
+.error {
+    color: #F00;
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    font-family: Consolas, monospace;
+}

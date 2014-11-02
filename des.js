@@ -92,8 +92,8 @@ DES.PC = new Array(
 );
 
 DES.PrimaryKey = null;
-DES.Keys = [];
-DES.Rounds = 16;
+DES.Keys = null;
+DES.Rounds = 6;
 
 DES.generateKeys = function(key) {
     if (key === this.PrimaryKey)
@@ -185,6 +185,6 @@ DES.decrypt = function(cipher) {
     return this.encrypt(cipher, true);
 }
 
-oriText = [0,1,1,0,1,0,0,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,0,0,1,1,0,1,0,1,1,0,0,0,1,0,1,0,1,0,1,0,0,0,0,1,0,0,1,1,0,1,1,1,0,1,1];
-key = oriText;
-document.onload=function(){DES.generateKeys(key);console.log(oriText);console.log(ci = DES.encrypt(oriText));}();
+// oriText = [0,1,1,0,1,0,0,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,0,0,1,1,0,1,0,1,1,0,0,0,1,0,1,0,1,0,1,0,0,0,0,1,0,0,1,1,0,1,1,1,0,1,1];
+// key = oriText;
+// document.onload=function(){DES.generateKeys(key);console.log(oriText);console.log(ci = DES.encrypt(oriText));}();
