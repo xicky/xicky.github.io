@@ -1,5 +1,3 @@
-CBCMode = false;
-
 ARR_BIN2HEX = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
 ARR_HEX2BIN = [
     "0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111",
@@ -76,16 +74,14 @@ function initTextareaResize (text) {
 };
 
 function isNotValid(text) {
-    if (!CBCMode) {
-        if (text.length !== 64) {
-            return "Not 64 bits("+text.length+" bits).";
-        }
-        for (var i = 0; i < text.length; i++) {
-            if (text[i] !== "0" && text[i] !== "1")
-                return "Not binary.";
-        }
-        return false;
+    if (text.length !== 64) {
+        return "Not 64 bits("+text.length+" bits).";
     }
+    for (var i = 0; i < text.length; i++) {
+        if (text[i] !== "0" && text[i] !== "1")
+            return "Not binary.";
+    }
+    return false;
 };
 
 function updateKey() {
@@ -216,12 +212,6 @@ INPUT_CIPHER = 2;
 INPUT_KEY = 4;
 
 window.onload = function() {
-    /* TODO:
-     *  Generate random primary key and plaintext
-     *  Generate KEYS
-     *  DES.encrypt()
-     *  Update textareas
-     */
     updateKey();
     plain = document.getElementById("plain");
     cipher = document.getElementById("cipher");
@@ -237,7 +227,6 @@ window.onload = function() {
     plain.value = "1010110000110100000110101011011110001010111000110100000101110001";
     syncTextareas(plain, plainHex);
     encrypt();
-
 
     btnSelectFile.addEventListener('change', handleFileSelect, false);
     initTextareaResize(plain);

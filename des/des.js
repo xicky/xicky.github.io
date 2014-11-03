@@ -117,60 +117,7 @@ DES.generateKeys = function(key) {
             tKeys[n][i+28] = tKeys[n-1][(i+this.LS[n])%28+28];
         }
     }
-    // for (var n = 0; n < this.Rounds; n++) {
-    //     this.Keys[n] = [];
-    //     for (var i = 0; i < 32; i++) {
-    //         this.Keys[n][i] = tKeys[n][this.PC[i]];
-    //     }
-    // }
     this.Keys = tKeys;
-}
-
-DES.F = function(L, R, K) {
-    var iR = [];
-    var p = [], nR = [];
-    for (var i = 0; i < 48; i++) {
-        iR[i] = R[this.E[i]] ^ K[i];
-    }
-    for (var i = 0; i < 8; i++) {
-        var sp = i * 6;
-        var row = iR[sp] * 2 + iR[sp+5];
-        var col = iR[sp+1] * 8 + iR[sp+2] * 4 + iR[sp+3] * 2 + iR[sp+4];
-        var num = this.S[i][row * 16 + col];
-        var lev = 8;
-        for (var j = 0; j < 4; j++) {
-            p[i * 4 + j] = (num / lev >= 1) ? 1 : 0;
-            num = num % lev;
-            lev = lev / 2;
-        }
-    }
-    for (var i = 0; i < 32; i++) {
-            nR[i] = L[i] ^ p[i];
-    };
-    return nR;
-}
-
-DES.F2 = function(R, Key) {
-    var eR = [], s = [], res = [];
-    for (var i = 0; i < 48; i++) {
-        eR[i] = R[DES.E[i]];
-    }
-    for (var i = 0; i < 48; i++) {
-        eR[i] = eR[i] ^ Key[i];
-    }
-    for (var i = 0; i < 48; i+=6) {
-        var row = eR[i]*2 + eR[i+5];
-        var col = eR[i+1]*8 + eR[i+2]*4 + eR[i+3]*2 + eR[i+4];
-        var num = this.S[i/6][row*16 + col];
-        var str = num.toString(2);
-        for (var j = 0; j < 4; j++) {
-            s[i*4+j] = (str[j] === "0") ? 0 : 1;
-        }
-    }
-    for (var i = 0; i < 32; i++) {
-        res[i] = s[DES.P[i]];
-    }
-    return res;
 }
 
 DES.encrypt = function(text, de) {
@@ -179,34 +126,6 @@ DES.encrypt = function(text, de) {
     for (var i = 0; i < 64; i++) {
         it[i] = text[this.IP[i]];
     };
-
-    /*
-        var L = it.slice(0, 32);
-        var R = it.slice(32);
-        for (var i = 0; i < this.Rounds; i++) {
-            if (!de) {
-                var nL = R.slice(), nR = [];
-                // var nR = this.F(L, R, this.Keys[i], de);
-                var tR = this.F2(R, this.Keys[i]);
-                for (var j = 0; j < 32; j++) {
-                    nR[j] = L[j] ^ tR[j];
-                }
-                L = nL;
-                R = nR;
-            } else {
-                var nR = L.slice();
-                var nL = this.F(R, L, this.Keys[this.Rounds-1-i], de);
-                R = nR;
-                L = nL;
-            }
-        }
-        
-        var concat = L.concat(R);
-        for (var i = 0; i < 64; i++) {
-            cipher[i] = concat[this.FP[i]];
-        }
-        return cipher;
-    */
 
     var p = [], q = [], w = [];
     for (var n = 0; n < this.Rounds; n++) {
