@@ -121,7 +121,8 @@ function bindInput(textarea, second, tip, isHex, which) {
             textarea.value = hexValue;
             value = hex2bin(hexValue);
             second.value = value;
-            resizeText(second);
+            if (which !== INPUT_KEY)
+                resizeText(second);
         } else {
             value = textarea.value;
             hexValue = bin2hex(value);
@@ -232,6 +233,11 @@ window.onload = function() {
     keyHex = document.getElementById("key-hex");
     keyBinTip = document.getElementById("key-bin-tip");
     btnSelectFile = document.getElementById("select-file");
+
+    plain.value = "1010110000110100000110101011011110001010111000110100000101110001";
+    syncTextareas(plain, plainHex);
+    encrypt();
+
 
     btnSelectFile.addEventListener('change', handleFileSelect, false);
     initTextareaResize(plain);
