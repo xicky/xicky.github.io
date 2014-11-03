@@ -9,7 +9,7 @@ body {
 }
 
 .error {
-    color: #F00;
+    background: #FFCDCD;
 }
 
 textarea {
@@ -20,4 +20,38 @@ textarea {
     font-size: 18px;
     letter-spacing: 0.1em;
     font-family: Consolas, monospace;
+}
+
+input {
+    display: block;
+    font-family: Consolas, monospace;
+    margin: 10px;
+    border: 1px solid #AAA;
+}
+
+input#rounds {
+    display: inline;
+    background: none;
+    border: none;
+    outline: none;
+    width: 40px;
+    margin: 0;
+    border-bottom: 2px solid #FE45DE;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+
+input#key {
+    font-family: Consolas, monospace;
+    width: 90%;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    padding: 3px;
+}
+input#key-hex {
+    font-size: 16px;
+    letter-spacing: 0.5em;
+    min-width: 300px;
+    padding: 3px;
 }
