@@ -117,17 +117,17 @@ function bindInput(textarea, second, tip, isHex, which) {
     textarea.oninput = function() {
         var error, value, hexValue;
         if (isHex) {
-            hexValue = textarea.value;
+            hexValue = textarea.value.toUpperCase();
+            textarea.value = hexValue;
             value = hex2bin(hexValue);
             second.value = value;
+            resizeText(second);
         } else {
             value = textarea.value;
             hexValue = bin2hex(value);
             second.value = hexValue;
         }
         if (error = isNotValid(value)) {
-            if (!(INPUT_LEGAL & which)) // input was legal
-                INPUT_LEGAL ^= which;
             switch(which) {
                 case INPUT_PLAIN:
                     PLAIN_LEGAL = false;
@@ -142,8 +142,6 @@ function bindInput(textarea, second, tip, isHex, which) {
             second.className = "error";
             // tip.innerText = error;
         } else {
-            if (INPUT_LEGAL & which) // input was illegal
-                INPUT_LEGAL ^= which;
             switch(which) {
                 case INPUT_PLAIN:
                     PLAIN_LEGAL = true;
@@ -182,10 +180,33 @@ function syncTextareas(text, hex, tip, ascii) {
     hex.value = bin2hex(text.value);
     text.className = "";
     hex.className = "";
-    tip.innerText = "";
+    if (tip)
+        tip.innerText = "";
 }
 
-INPUT_LEGAL = 0;
+function handleFileSelect(evt) {
+    var files = evt.target.files;
+    if (files[0]) {
+        console.log("what");
+        var reader = new FileReader();
+        reader.readAsText(files[0]);
+        reader.onload = fileLoaded;
+    }
+}
+function fileLoaded(evt) {
+    var str = evt.target.result;
+    str = str.slice(0, 64);
+    plain.value = str;
+    resizeText(plain);
+    if (isNotValid(str)) {
+        plain.className = plainHex.className = "error";
+    } else {
+        plain.className = plainHex.className = "";
+        syncTextareas(plain, plainHex);
+        encrypt();
+    }
+}
+
 KEY_LEGAL = true;
 PLAIN_LEGAL = false;
 CIPHER_LEGAL = false;
@@ -210,7 +231,9 @@ window.onload = function() {
     key = document.getElementById("key");
     keyHex = document.getElementById("key-hex");
     keyBinTip = document.getElementById("key-bin-tip");
+    btnSelectFile = document.getElementById("select-file");
 
+    btnSelectFile.addEventListener('change', handleFileSelect, false);
     initTextareaResize(plain);
     initTextareaResize(cipher);
 
@@ -220,4 +243,20 @@ window.onload = function() {
     bindInput(cipherHex, cipher, cipherBinTip, true, INPUT_CIPHER);
     bindInput(key, keyHex, keyBinTip, false, INPUT_KEY);
     bindInput(keyHex, key, keyBinTip, true, INPUT_KEY);
+
+    rounds = document.getElementById("rounds");
+    rounds.onblur = function() {
+        var r = parseInt(rounds.value);
+        if (isNaN(r) || r <= 0 || r > 16) {
+            rounds.className = "error";
+        } else {
+            rounds.className = "";
+            DES.Rounds = r;
+            updateKey();
+            if (PLAIN_LEGAL)
+                encrypt();
+            else if (CIPHER_LEGAL)
+                decrypt();
+        }
+    }
 };

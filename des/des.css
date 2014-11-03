@@ -1,15 +1,23 @@
 body {
     background: #F8F8F8;
+    padding: 20px;
+}
+
+h1 {
+    margin-top: 0;
 }
 
 .box {
     float: left;
     width: 45%;
-    margin: 20px;
+}
+
+#cipher-block {
+    margin-left: 30px;
 }
 
 .error {
-    background: #FFCDCD;
+    background: #FFCDCD!important;
 }
 
 textarea {
@@ -20,13 +28,16 @@ textarea {
     font-size: 18px;
     letter-spacing: 0.1em;
     font-family: Consolas, monospace;
+    transition: background, 0.5s;
 }
 
 input {
     display: block;
     font-family: Consolas, monospace;
-    margin: 10px;
+    margin: 10px 0;
+    padding: 8px;
     border: 1px solid #AAA;
+    width: 90%;
 }
 
 input#rounds {
@@ -44,14 +55,22 @@ input#rounds {
 
 input#key {
     font-family: Consolas, monospace;
-    width: 90%;
     font-size: 18px;
     letter-spacing: 0.1em;
-    padding: 3px;
+    max-width: 775px;
 }
 input#key-hex {
     font-size: 16px;
     letter-spacing: 0.5em;
-    min-width: 300px;
-    padding: 3px;
+    max-width: 288px;
+}
+
+@media screen and (max-width: 800px) {
+    .box {
+        float: none;
+        width: 90%;
+    }
+    #cipher-block {
+        margin-left: 0;
+    }
 }
