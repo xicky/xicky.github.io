@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
 <title>DES</title>
 <script type="text/javascript" src="des.js"></script>
 <script type="text/javascript" src="des-ui.js"></script>
@@ -22,13 +23,11 @@
     <legend>Plaintext:</legend>
     <textarea id="plain" placeholder="Binary plaintext" class="bin" maxlength="64" rows="1"></textarea><span id="plain-bin-tip" class="tip"></span>
     <textarea id="plain-hex" placeholder="Hex" class="hex" maxlength="16" rows="1"></textarea>
-    <textarea id="plain-ascii" class="ascii" rows="1" disabled></textarea>
 </div>
 <div id="cipher-block" class="box">
     <legend>Ciphertext:</legend>
     <textarea id="cipher" placeholder="Binary ciphertext" class="bin" maxlength="64" rows="1"></textarea><span id="cipher-bin-tip" class="tip"></span>
     <textarea id="cipher-hex" placeholder="Hex" class="hex" maxlength="16" rows="1"></textarea>
-    <textarea id="cipher-ascii" class="ascii" rows="1" disabled></textarea>
 </div>
 
 </body>

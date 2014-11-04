@@ -57,7 +57,7 @@ input#key {
     font-family: Consolas, monospace;
     font-size: 18px;
     letter-spacing: 0.1em;
-    max-width: 775px;
+    max-width: 800px;
 }
 input#key-hex {
     font-size: 16px;
