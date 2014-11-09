@@ -18,15 +18,15 @@ var settings = {
 
     'basic': {
 
-        'emission_rate': 80,
+        'emission_rate': 120,
         'min_life': 2,
-        'life_range': 2,
-        'min_angle': 10,
-        'angle_range': 160,
+        'life_range': 5,
+        'min_angle': 250,
+        'angle_range': 40,
         'min_speed': 50,
-        'speed_range': 100,
+        'speed_range': 200,
         'min_size': 1,
-        'size_range': 1,
+        'size_range': 2,
         'start_colours': [
             [256, 256, 256, 1]
         ],
@@ -35,7 +35,7 @@ var settings = {
         ],
         'gravity': {
             x: 0,
-            y: 0
+            y: 80
         }
     }
 };
@@ -159,7 +159,7 @@ Emitter.prototype.update = function() {
 
             this.particles.push(
                 new Particle(
-                    Math.random() * 200 - 100,
+                    Math.random() * canvas.width,
                     0,
                     this.settings.min_angle + Math.random() * this.settings.angle_range,
                     this.settings.min_speed + Math.random() * this.settings.speed_range,
@@ -238,7 +238,8 @@ Emitter.prototype.update = function() {
     }
 };
 
-var emitter = new Emitter(canvas.width / 2, canvas.height / 2, settings.basic);
+// var emitter = new Emitter(canvas.width / 2, canvas.height / 2, settings.basic);
+var emitter = new Emitter(0, 0, settings.basic);
 
 function loop() {
 
