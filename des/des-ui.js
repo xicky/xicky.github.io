@@ -5,6 +5,8 @@ ARR_HEX2BIN = [
       "X7", "1010", "1011", "1100", "1101", "1110", "1111"
 ];
 
+var des = new DES();
+
 function bin2hex(s) {
     var s2 = "", len = s.length;
     for (var i = 0; i < len; i++) {
@@ -71,7 +73,7 @@ function initTextareaResize (text) {
     observe(text, 'keydown', delayedResize);
 
     resize();
-};
+}
 
 function isNotValid(text) {
     if (text.length !== 64) {
@@ -82,32 +84,32 @@ function isNotValid(text) {
             return "Not binary.";
     }
     return false;
-};
+}
 
 function updateKey() {
     var key = document.getElementById("key");
     var arrKey = bin_str2arr(key.value);
-    DES.generateKeys(arrKey);
+    des.generateKeys(arrKey);
 }
 
 function encrypt() {
     var arrPlain = bin_str2arr(plain.value);
-    var arrCipher = DES.encrypt(arrPlain);
+    var arrCipher = des.encrypt(arrPlain);
     var strCipher = bin_arr2str(arrCipher);
     cipher.value = strCipher;
     syncTextareas(cipher, cipherHex, cipherBinTip);
     resizeText(cipher);
     CIPHER_LEGAL = true;
-};
+}
 function decrypt() {
     var arrCipher = bin_str2arr(cipher.value);
-    var arrPlain = DES.decrypt(arrCipher);
+    var arrPlain = des.decrypt(arrCipher);
     var strPlain = bin_arr2str(arrPlain);
     plain.value = strPlain;
     syncTextareas(plain, plainHex, plainBinTip);
     resizeText(plain);
     PLAIN_LEGAL = true;
-};
+}
 
 function bindInput(textarea, second, tip, isHex, which) {
     textarea.oninput = function() {
@@ -171,7 +173,7 @@ function bindInput(textarea, second, tip, isHex, which) {
                 decrypt();
         }
     };
-};
+}
 
 function syncTextareas(text, hex, tip, ascii) {
     hex.value = bin2hex(text.value);
@@ -246,12 +248,12 @@ window.onload = function() {
             rounds.className = "error";
         } else {
             rounds.className = "";
-            DES.Rounds = r;
+            des.updateRounds(r);
             updateKey();
             if (PLAIN_LEGAL)
                 encrypt();
             else if (CIPHER_LEGAL)
                 decrypt();
         }
-    }
+    };
 };
