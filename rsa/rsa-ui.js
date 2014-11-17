@@ -4,6 +4,5 @@ div = document.form;
 
 rsa = new RSA();
 rsa.gen2();
-c = rsa.doEncrypt('200').toString();
+c = rsa.doEncrypt('200');
 
-function fun() { rsa.gen2(); return "d: "+rsa.d.toString()+"\n e: "+rsa.e.toString(); }

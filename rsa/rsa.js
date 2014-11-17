@@ -129,7 +129,7 @@ RSA.prototype.encrypt = function(m) {
 
 RSA.prototype.decrypt = function (c) {
   //return c.modPow(this.d, this.n);
-  //using Chinese remainder theorem to speed up decryption
+  //Use Chinese remainder theorem to speed up decryption
   var m1 = c.modPow(this.dmp1, this.p); // m1 = c ^ dmp1 mod p
   var m2 = c.modPow(this.dmq1, this.q); // m2 = c ^ dmq1 mod q
   var h = this.qinv.multiply(m1.subtract(m2)).mod(this.p); // h = (qinv * (m1 - m2)) mod p
@@ -149,7 +149,7 @@ RSA.prototype.doEncrypt = function(plaintext) {
     m = new BigInteger(m, 16);
   }
   m = pkcsPad(m);
-  return this.encrypt(m);
+  return this.encrypt(m).toString(16).toUpperCase();
 };
 
 RSA.prototype.doDecrypt = function(ciphertext) {
@@ -158,5 +158,5 @@ RSA.prototype.doDecrypt = function(ciphertext) {
     c = new BigInteger(c, 16);
   }
   c = this.decrypt(c);
-  return pkcsUnpad(c);
+  return pkcsUnpad(c).toString(16).toUpperCase();
 };
