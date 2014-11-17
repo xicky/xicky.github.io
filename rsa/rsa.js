@@ -85,6 +85,44 @@ RSA.prototype.generateKey = function(e) {
   this.qinv = this.q.modInverse(this.p); // qinv = q^-1 mod p
 };
 
+
+function randomPrime(bitLen, coprime) {
+  var num;
+  while (true) {
+    var ba = getRandomBytes(rng, (bitLen >> 3) + 1);
+    var t = bitLen & 7;
+    if (t > 0) {
+      ba[0] &= ((1<<t)-1);
+    } else {
+      ba[0] = 0;
+    }
+    num = new BigInteger(ba, 256);
+    if (coprime !== undefined) {
+      if (num.gcd(coprime).compareTo(BigInteger.ONE) === 0 && num.isProbablePrime(10))
+        break;
+    } else {
+      if (num.isProbablePrime(10))
+        break;
+    }
+  }
+  return num;
+}
+
+RSA.prototype.gen2 = function() {
+  var len = 128;
+  this.p = randomPrime(len >> 1);
+  this.q = randomPrime(len - (len >> 1));
+  this.n = this.p.multiply(this.q);
+  var p1 = this.p.subtract(BigInteger.ONE);
+  var q1 = this.q.subtract(BigInteger.ONE);
+  var phi = p1.multiply(q1);
+  this.d = randomPrime(300, phi);
+  this.e = this.d.modInverse(phi);
+  this.dmp1 = this.d.mod(p1);
+  this.dmq1 = this.d.mod(q1);
+  this.qinv = this.q.modInverse(this.p);
+};
+
 RSA.prototype.encrypt = function(m) {
     return m.modPow(this.e, this.n);
 };
@@ -106,11 +144,19 @@ function pkcsUnpad(c) {
 }
 
 RSA.prototype.doEncrypt = function(plaintext) {
-  var m = pkcsPad(plaintext);
+  var m = plaintext;
+  if (typeof(m) === 'string') {
+    m = new BigInteger(m, 16);
+  }
+  m = pkcsPad(m);
   return this.encrypt(m);
 };
 
-RSA.prototype.deDecrypt = function(ciphertext) {
-  var c = this.decrypt(ciphertext);
+RSA.prototype.doDecrypt = function(ciphertext) {
+  var c = ciphertext;
+  if (typeof(c) === 'string') {
+    c = new BigInteger(c, 16);
+  }
+  c = this.decrypt(c);
   return pkcsUnpad(c);
 };

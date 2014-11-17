@@ -1,9 +1,9 @@
 // depends on rsa.js
 
-div = document.what;
+div = document.form;
 
 rsa = new RSA();
-rsa.generateKey("3");
-console.log(rsa.encrypt(new BigInteger("10")));
+rsa.gen2();
+c = rsa.doEncrypt('200').toString();
 
-console.log(div.a.value);
+function fun() { rsa.gen2(); return "d: "+rsa.d.toString()+"\n e: "+rsa.e.toString(); }
