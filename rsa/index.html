@@ -3,16 +3,59 @@
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
 <title>RSA</title>
+<link type="text/css" rel="stylesheet" href="rsa.css"/>
 <script type="text/javascript" src="jsbn.js"></script>
 <script type="text/javascript" src="jsbn2.js"></script>
 <script type="text/javascript" src="prng4.js"></script>
 <script type="text/javascript" src="rsa.js"></script>
 </head>
 <body>
-<form name="form">
-<input name="a" id="a" value="123"/>
-<input name="b" id="b" value="321"/>
+<form name="alice">
+<div class="rsa">
+    <div class="input-group">
+        <label>p</label>
+        <input type="text" name="p"/>
+    </div>
+    <div class="input-group">
+        <label>textarea</label>
+        <textarea name="ta"></textarea>
+    </div>
+    <div class="input-group">
+        <label>q</label>
+        <input type="text" name="q"/>
+    </div>
+    <div class="input-group">
+        <label>n</label>
+        <input type="text" name="n"/>
+    </div>
+    <div class="input-group">
+        <label>d(private key)</label>
+        <input type="text" name="d"/>
+    </div>
+    <div class="input-group">
+        <label>e(public key)</label>
+        <input type="text" name="e"/>
+    </div>
+</div>
+<div class="des">
+    <div class="input-group">
+
+    </div>
+</div>
 </form>
+<form name="bob">
+<div class="rsa">
+<input type="text" name="n"/>
+<input type="text" name="e"/>
+</div>
+<div class="des">
+<input type="text" name="desKey"/>
+<input type="text" name="desKeyCipher"/>
+<input type="text" name="plain"/>
+<input type="text" name="cipher"/>
+</div>
+</form>
+
 </body>
 <script type="text/javascript" src="rsa-ui.js"></script>
 </html>
