@@ -10,52 +10,93 @@
 <script type="text/javascript" src="rsa.js"></script>
 </head>
 <body>
-<form name="alice">
-<div class="rsa">
-    <div class="input-group">
-        <label>p</label>
-        <input type="text" name="p"/>
+<div class="wrapper">
+    <div id="header">
+        <h3>RSA</h3>
     </div>
-    <div class="input-group">
-        <label>textarea</label>
-        <textarea name="ta"></textarea>
+    <div id="container">
+    <div id="alice" class="col2">
+        <form name="alice">
+        <div class="rsa">
+            <div class="input-group">
+                <legend>p</legend>
+                <textarea name="p" rows="1"></textarea>
+            </div>
+            <div class="input-group">
+                <legend>q</legend>
+                <textarea name="q" rows="1"></textarea>
+            </div>
+            <div class="input-group">
+                <legend>n</legend>
+                <textarea name="n" rows="1"></textarea>
+            </div>
+            <div class="input-group">
+                <legend>d(private key)</legend>
+                <textarea name="d" rows="1"></textarea>
+            </div>
+            <div class="input-group">
+                <legend>e(public key)</legend>
+                <textarea name="e" rows="1"></textarea>
+            </div>
+        </div>
+        <div class="des">
+            <div class="input-group">
+                <legend>Encrypted DES key</legend>
+                <textarea name="keyCipher" rows="1"></textarea>
+            </div>
+            <div class="input-group">
+                <legend>DES key</legend>
+                <input type="text" name="key" maxlength="16" />
+            </div>
+            <div class="input-group">
+                <legend>DES ciphertext</legend>
+                <input type="text" name="cipher" maxlength="16" />
+            </div>
+            <div class="input-group">
+                <legend>DES plaintext</legend>
+                <input type="text" name="plain" maxlength="16" />
+            </div>
+        </div>
+        </form>
     </div>
-    <div class="input-group">
-        <label>q</label>
-        <input type="text" name="q"/>
-    </div>
-    <div class="input-group">
-        <label>n</label>
-        <input type="text" name="n"/>
-    </div>
-    <div class="input-group">
-        <label>d(private key)</label>
-        <input type="text" name="d"/>
-    </div>
-    <div class="input-group">
-        <label>e(public key)</label>
-        <input type="text" name="e"/>
-    </div>
-</div>
-<div class="des">
-    <div class="input-group">
 
+    <div id="bob" class="col2">
+        <form name="bob">
+        <div class="rsa">
+            <div class="input-group">
+                <legend>n</legend>
+                <textarea name="n" rows="1"></textarea>
+            </div>
+            <div class="input-group">
+                <legend>e</legend>
+                <textarea name="e" rows="1"></textarea>
+            </div>
+        </div>
+        <div class="des">
+            <div class="input-group">
+                <legend>DES key</legend>
+                <input type="text" name="key" maxlength="16"/>
+            </div>
+            <div class="input-group">
+                <legend>Encrypted DES key</legend>
+                <textarea name="keyCipher" rows="1"></textarea>
+            </div>
+            <div class="input-group">
+                <legend>Plaintext</legend>
+                <input type="text" name="plain" maxlength="16"/>
+            </div>
+            <div class="input-group">
+                <legend>Ciphertext</legend>
+                <input type="text" name="cipher" maxlength="16"/>
+            </div>
+        </div>
+        </form>
+    </div>
+    </div>
+    <div id="footer">
+    <p>#FOOTER</p>
     </div>
 </div>
-</form>
-<form name="bob">
-<div class="rsa">
-<input type="text" name="n"/>
-<input type="text" name="e"/>
-</div>
-<div class="des">
-<input type="text" name="desKey"/>
-<input type="text" name="desKeyCipher"/>
-<input type="text" name="plain"/>
-<input type="text" name="cipher"/>
-</div>
-</form>
-
 </body>
 <script type="text/javascript" src="rsa-ui.js"></script>
 </html>
