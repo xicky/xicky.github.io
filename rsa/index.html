@@ -14,6 +14,23 @@
     <div id="header">
         <h3>RSA</h3>
     </div>
+    <div id="controller">
+        <button onclick="genRSAKey()">Generate RSA keys</button>
+        <span>>></span>
+        <button onclick="alice2bob()">Transmit RSA public key to Bob</button>
+        <span>>></span>
+        <button onclick="randomDESKey()">Generate random DES key and plain</button>
+        <span>>></span>
+        <button onclick="encryptDESKey()">Encrypt DES key(using RSA)</button>
+        <span>>></span>
+        <button onclick="encryptPlain()">Encrypt plaintext(using DES)</button>
+        <span>>></span>
+        <button onclick="bob2alice()">Transmit encrypted key and ciphertext to Alice</button>
+        <span>>></span>
+        <button onclick="decryptDESKey()">Decrypt DES key(using private RSA key)</button>
+        <span>>></span>
+        <button onclick="decryptCipher()">Decrypt ciphertext</button>
+    </div>
     <div id="container">
     <div id="alice" class="col2">
         <form name="alice">
