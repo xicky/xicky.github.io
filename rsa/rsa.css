@@ -78,14 +78,14 @@ input {
 textarea {
     resize: none;
     overflow: hidden;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 legend {
-    color: #FFF;
-    font-size: 12px;
+    color: #666;
+    font-size: 15px;
     font-family: monospace;
-    text-shadow: 1px 1px 0 #999, -1px 1px 0 #999, 1px -1px 0 #999, -1px -1px 0 #999;
+    text-shadow: 1px 1px 0 #FFF;
 }
 
 label {

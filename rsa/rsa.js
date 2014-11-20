@@ -29,7 +29,7 @@ function initRNG() {
     return arc4;
 }
 
-var rng = initRNG();
+rng = initRNG();
 
 function RSA() {
   this.p = null;
@@ -61,8 +61,9 @@ function randomBigPrime(bitLen, ee) {
   return num;
 }
 
-//Generate a new random private key B bits long, using public expt E
-RSA.prototype.generateKey = function(e) {
+// Generate a new random private key B bits long, using public expt E
+// This is not used in my project
+RSA.prototype.genKeyWithPublicKey = function(e) {
   var ee;
   var len = 128; // 128 bits long
   if (typeof(e) === 'number') {
@@ -108,7 +109,7 @@ function randomPrime(bitLen, coprime) {
   return num;
 }
 
-RSA.prototype.gen2 = function() {
+RSA.prototype.genKey = function() {
   var len = 128;
   this.p = randomPrime(len >> 1);
   this.q = randomPrime(len - (len >> 1));
