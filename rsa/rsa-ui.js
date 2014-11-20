@@ -1,7 +1,16 @@
-// depends on rsa.js
+// depends on rsa.js and des.js
 
 alice = document.alice;
 bob = document.bob;
+rsa = new RSA();
+des = new DES();
+
+function hexStr2binArr(str) {
+  // TODO
+}
+function binArr2hexStr(arr) {
+  // TODO
+}
 
 function updateTexts(texts, src) {
   var len = texts.length;
@@ -34,7 +43,6 @@ function genRandom(byteLen, target) {
   target.value = str;
 }
 
-rsa = new RSA();
 
 function genRSAKey() {
   rsa.genKey();
@@ -61,7 +69,11 @@ function encryptDESKey() {
 }
 
 function encryptPlain() {
-  // TODO: Add des.encrypt()
+  if (des.PrimaryKey === null)
+    des.generateKeys(hexStr2binArr(bob.key.value));
+  var ci = des.encrypt(hexStr2binArr(bob.plain.value));
+  var str = binArr2hexStr(ci);
+  updateTexts([bob.cipher], [str]);
 }
 
 function bob2alice() {
@@ -77,5 +89,9 @@ function decryptDESKey() {
 }
 
 function decryptCipher() {
-  // TODO: Add des.decrypt();
+  if (des.PrimaryKey === null)
+    des.generateKeys(hexStr2binArr(alice.key.value));
+  var p = des.decrypt(hexStr2binArr(alice.cipher.value));
+  var str = binArr2hexStr(p);
+  updateTexts([alice.plain], [str]);
 }
