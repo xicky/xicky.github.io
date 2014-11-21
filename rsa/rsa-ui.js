@@ -30,27 +30,33 @@ function binArr2hexStr(arr) {
   }
   return hexStr;
 }
-
+function clear(a) {
+  for (var i = 0; i < a.length; i++) {
+    a[i].className = '';
+  };
+}
 function updateTexts(texts, src) {
   var len = texts.length;
 
   if (typeof(src[0]) === 'string') {
     for (var i = 0; i < len; i++)
       texts[i].value = src[i];
-  } else {
+    } else {
     for (var i = 0; i < len; i++)
       texts[i].value = src[i].toString(16).toUpperCase();
-  }
+    }
 
     for (var i = 0; i < len; i++) {
       if (texts[i].type === 'textarea') {
         texts[i].style.height = 'auto';
         texts[i].style.height = texts[i].scrollHeight + 'px';
       }
+      texts[i].className='changed';
     }
+    setTimeout(function() {clear(texts)}, 600);
 }
 
-function genRandom(byteLen, target) {
+function genRandom(byteLen) {
   var ba = getRandomBytes(rng, byteLen);
   var str = '';
   for (var i = 0; i < byteLen; i++) {
@@ -59,7 +65,7 @@ function genRandom(byteLen, target) {
     }
     str += ba[i].toString(16).toUpperCase();
   }
-  target.value = str;
+  return str;
 }
 
 
@@ -75,8 +81,9 @@ function alice2bob() {
 }
 
 function randomDESKey() {
-  genRandom(8, bob.key);
-  genRandom(8, bob.plain);
+  var key = genRandom(8);
+  var plain = genRandom(8);
+  updateTexts([bob.key, bob.plain], [key, plain]);
 }
 
 function encryptDESKey() {

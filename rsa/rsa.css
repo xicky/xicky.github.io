@@ -69,6 +69,7 @@ input, textarea {
     outline: none;
     box-shadow: inset 0px 0px 6px #DDD;
     font-family: "Consolas", monospace;
+    transition: background-color 0.25s;
 }
 
 input {
@@ -79,6 +80,7 @@ textarea {
     resize: none;
     overflow: hidden;
     font-size: 18px;
+    height: 38px;
 }
 
 legend {
@@ -88,11 +90,6 @@ legend {
     text-shadow: 1px 1px 0 #FFF;
 }
 
-label {
-    display: table-cell;
-    width: 1%;
-    padding: 5px;
-    white-space: nowrap;
-    vertical-align: middle;
-    background: #EEE;
+.changed {
+    background: #DAF4A7;
 }
