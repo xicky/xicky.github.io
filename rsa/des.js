@@ -96,10 +96,6 @@ function DES() {
     this.Rounds = 16;
 }
 
-DES.prototype.updateRounds = function(r) {
-    this.Rounds = r;
-};
-
 DES.prototype.generateKeys = function(key) {
     if (key === this.PrimaryKey)
         return;
