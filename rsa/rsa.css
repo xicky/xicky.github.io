@@ -90,7 +90,6 @@ textarea {
 input[disabled], textarea[disabled] {
     background: #EEE;
     text-shadow: 1px 1px 0 #FFF;
-    cursor: not-allowed;
 }
 
 legend {
