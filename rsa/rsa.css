@@ -83,6 +83,11 @@ textarea {
     height: 38px;
 }
 
+input[disabled], textarea[disabled] {
+    background: #EEE;
+    text-shadow: 1px 1px 0 #FFF;
+}
+
 legend {
     color: #666;
     font-size: 15px;
