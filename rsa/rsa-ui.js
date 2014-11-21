@@ -51,7 +51,7 @@ function updateTexts(texts, src) {
         texts[i].style.height = 'auto';
         texts[i].style.height = texts[i].scrollHeight + 'px';
       }
-      texts[i].style.background = '#DAF4A7';
+      texts[i].style.background = '#C4C7F4';
     }
     setTimeout(function() {clear(texts)}, 600);
 }

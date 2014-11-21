@@ -23,6 +23,9 @@ body {
     padding: 1em;
     text-align: center;
 }
+#controller {
+    text-align: center;
+}
 #container:after {
     content: "";
     visibility: hidden;
@@ -49,10 +52,11 @@ body {
     color: #999;
     text-shadow: 1px 1px 0 #FFF;
 }
-h3 {
+h3, h5 {
     margin: 0;
     padding: 0;
 }
+
 
 .input-group {
     width: 100%;
@@ -95,6 +99,18 @@ legend {
     text-shadow: 1px 1px 0 #FFF;
 }
 
-.changed {
-    background: #DAF4A7;
+button {
+    background: #8D92E5;
+    border: 1px solid #626999;
+    color: #FFF;
+    padding: 8px;
+    font-family: "Lucida sans", sans-serif;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 0 #383838;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover {
+    background: #2C3B84;
 }

@@ -13,27 +13,28 @@
 <body>
 <div class="wrapper">
     <div id="header">
-        <h3>RSA</h3>
+        <h3>An RSA encryption demo</h3>
     </div>
     <div id="controller">
-        <button onclick="genRSAKey()">Generate RSA keys</button>
+        <button onclick="genRSAKey()">1. Generate RSA keys</button>
         <span>>></span>
-        <button onclick="alice2bob()">Transmit RSA public key to Bob</button>
+        <button onclick="alice2bob()">2. Transmit RSA public key to Bob</button>
         <span>>></span>
-        <button onclick="randomDESKey()">Generate random DES key and plain</button>
+        <button onclick="randomDESKey()">3. Generate random DES key and plain</button>
         <span>>></span>
-        <button onclick="encryptDESKey()">Encrypt DES key(using RSA)</button>
+        <button onclick="encryptDESKey()">4. Encrypt DES key(using RSA)</button>
         <span>>></span>
-        <button onclick="encryptPlain()">Encrypt plaintext(using DES)</button>
+        <button onclick="encryptPlain()">5. Encrypt plaintext(using DES)</button>
         <span>>></span>
-        <button onclick="bob2alice()">Transmit encrypted key and ciphertext to Alice</button>
+        <button onclick="bob2alice()">6. Transmit encrypted key and ciphertext to Alice</button>
         <span>>></span>
-        <button onclick="decryptDESKey()">Decrypt DES key(using private RSA key)</button>
+        <button onclick="decryptDESKey()">7. Decrypt DES key(using private RSA key)</button>
         <span>>></span>
-        <button onclick="decryptCipher()">Decrypt ciphertext</button>
+        <button onclick="decryptCipher()">8. Decrypt ciphertext</button>
     </div>
     <div id="container">
     <div id="alice" class="col2">
+        <h5>Alice</h5>
         <form name="alice">
         <div class="rsa">
             <div class="input-group">
@@ -79,6 +80,7 @@
     </div>
 
     <div id="bob" class="col2">
+        <h5>Bob</h5>
         <form name="bob">
         <div class="rsa">
             <div class="input-group">
