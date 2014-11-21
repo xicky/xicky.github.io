@@ -4,12 +4,31 @@ alice = document.alice;
 bob = document.bob;
 rsa = new RSA();
 des = new DES();
+ARR_BIN2HEX = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+ARR_HEX2BIN = [
+    [0,0,0,0], [0,0,0,1], [0,0,1,0], [0,0,1,1], [0,1,0,0], [0,1,0,1],
+    [0,1,1,0], [0,1,1,1], [1,0,0,0], [1,0,0,1],        [],        [],
+           [],        [],        [],        [],        [], [1,0,1,0],
+    [1,0,1,1], [1,1,0,0], [1,1,0,1], [1,1,1,0], [1,1,1,1]
+];
 
 function hexStr2binArr(str) {
-  // TODO
+  var len = str.length;
+  var binArr = [];
+  for (var i = 0; i < len; i++) {
+    var num = str.charCodeAt(i) - 48;
+    binArr = binArr.concat(ARR_HEX2BIN[num]);
+  }
+  return binArr;
 }
 function binArr2hexStr(arr) {
-  // TODO
+  var len = arr.length;
+  var hexStr = '';
+  for (var i = 0; i < len; i += 4) {
+    var num = arr[i]*8 + arr[i+1]*4 + arr[i+2]*2 + arr[i+3];
+    hexStr += ARR_BIN2HEX[num];
+  }
+  return hexStr;
 }
 
 function updateTexts(texts, src) {
