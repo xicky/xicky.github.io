@@ -34,8 +34,3 @@ function ARC4next() {
 
 Arcfour.prototype.init = ARC4init;
 Arcfour.prototype.next = ARC4next;
-
-// Plug in your RNG constructor here
-function prng_newstate() {
-  return new Arcfour();
-}
